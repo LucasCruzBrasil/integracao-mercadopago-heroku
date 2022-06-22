@@ -1,0 +1,29 @@
+{
+  "name": "integracao_mercadopago",
+  "version": "1.0.0",
+  "description": "integracao com mercado pago",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasCruzBrasil/integracao_mercadopago.git"
+  },
+  
+  "keywords": [
+    "teste"
+  ],
+  "author": "Lucas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasCruzBrasil/integracao_mercadopago/issues"
+  },
+  "homepage": "https://github.com/LucasCruzBrasil/integracao_mercadopago#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mercadopago": "^1.5.13",
+    "nodemon": "^2.0.16"
+  }
+}
