@@ -20,7 +20,7 @@ app.get("/pagar", async (req, res) => {
         items: [
             item = {
                 id: id,
-                description: "testes para futuro api pix",
+                description: "testes para futuro api pix :)",
                 quantity:1,
                 currency_id: 'BRL',
                 unit_price: parseFloat(20)
