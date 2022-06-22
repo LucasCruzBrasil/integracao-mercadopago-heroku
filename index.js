@@ -44,6 +44,11 @@ app.get("/pagar", async (req, res) => {
 
 })
 
+app.post('/not', (req, res) => {
+    console.log(req.query);
+    console.log('ok')
+})
+
 app.listen(8080, (req, res) => {
     console.log('servidor rodando');
 })
