@@ -49,6 +49,6 @@ app.post('/not', (req, res) => {
     res.send('ok');
 })
 
-app.listen(8080, (req, res) => {
+app.listen(80, (req, res) => {
     console.log('servidor rodando');
 })
