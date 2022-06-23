@@ -33,7 +33,7 @@ app.get("/pagar", async (req, res) => {
         },
         exeternal_reference: id
     }
-
+ //blablagp
 
     try {
         var pagamentos = await mercadopago.preferences.create(dados);
