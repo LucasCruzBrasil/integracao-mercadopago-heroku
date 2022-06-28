@@ -57,7 +57,7 @@ app.post("/pix", (req, res) => {
     const data = {
       payment_method_id: "pix",
       description: "requestBody.description",
-      transaction_amount: Number(requestBody.transactionAmount),
+      transaction_amount: 20,
       payer: {
         email: requestBody.payer.email,
         first_name: requestBody.payer.firstName,
