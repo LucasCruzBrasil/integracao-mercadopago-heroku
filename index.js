@@ -75,6 +75,7 @@ app.post("/pix", (req, res) => {
   
           res.status(201).json({
             id: response.id,
+            amount: response.transaction_amount,
             status: response.status,
             detail: response.status_detail,
             qrCode: response.point_of_interaction.transaction_data.qr_code,
