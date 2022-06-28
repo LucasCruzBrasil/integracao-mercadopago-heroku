@@ -63,8 +63,8 @@ app.post("/pix", (req, res) => {
         first_name: "joao",
         last_name: "do gueto",
         identification: {
-          type: requestBody.payer.identification.type,
-          number: requestBody.payer.identification.number,
+          type: "requestBody.payer.identification.type",
+          number: "requestBody.payer.identification.number",
         }
       }
     };
