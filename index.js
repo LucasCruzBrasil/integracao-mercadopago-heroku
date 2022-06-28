@@ -59,9 +59,9 @@ app.post("/pix", (req, res) => {
       description: "requestBody.description",
       transaction_amount: 20,
       payer: {
-        email: requestBody.payer.email,
-        first_name: requestBody.payer.firstName,
-        last_name: requestBody.payer.lastName,
+        email: "algurm@alguem.com",
+        first_name: "joao",
+        last_name: "do gueto",
         identification: {
           type: requestBody.payer.identification.type,
           number: requestBody.payer.identification.number,
