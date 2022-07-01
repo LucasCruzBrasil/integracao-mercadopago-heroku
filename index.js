@@ -56,15 +56,15 @@ app.post("/pix", (req, res) => {
     const requestBody = req.body;
     const data = {
       payment_method_id: "pix",
-      description: "requestBody.description",
-      transaction_amount: 1,
+      description: requestBody.description,
+      transaction_amount:Number(requestBody.transactionAmount),
       payer: {
-        email: "algurm@alguem.com",
-        first_name: "joao",
-        last_name: "do gueto",
+        email: requestBody.payer.email,
+        first_name: requestBody.payer.first_name,
+        last_name: requestBody.payer.last_name,
         identification: {
-          type: "requestBody.payer.identification.type",
-          number: "requestBody.payer.identification.number",
+          type: requestBody.payer.identification.type,
+          number: requestBody.identification.number,
         }
       }
     };
