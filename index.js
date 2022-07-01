@@ -53,18 +53,18 @@ app.post('/not', (req, res) => {
 
 
 app.post("/pix", (req, res) => {
-    const requestBody = req.body;
+   
     const data = {
       payment_method_id: "pix",
-      description: requestBody.description,
+      description: req.body.description,
       transaction_amount:Number(requestBody.transactionAmount),
       payer: {
-        email: requestBody.payer.email,
-        first_name: requestBody.payer.first_name,
-        last_name: requestBody.payer.last_name,
+        email: req.body.payer.email,
+        first_name: req.body.payer.first_name,
+        last_name: req.body.payer.last_name,
         identification: {
-          type: requestBody.payer.identification.type,
-          number: requestBody.identification.number,
+          type: req.body.payer.identification.type,
+          number: req.body.identification.number,
         }
       }
     };
