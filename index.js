@@ -1,6 +1,9 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
+
+
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 var bodyParser = require('body-parser'); 
