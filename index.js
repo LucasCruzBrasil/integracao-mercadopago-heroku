@@ -58,17 +58,16 @@ app.post('/not', (req, res) => {
 
 
 
-app.post("/pix", (req, res) => {
+app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
-
   const data = {
     payment_method_id: "pix",
     description: requestBody.description,
-    transaction_amount: Number(requestBody.transaction_Amount),
+    transaction_amount: Number(requestBody.transactionAmount),
     payer: {
       email: requestBody.payer.email,
-      first_name: requestBody.payer.first_Name,
-      last_name: requestBody.payer.last_Name,
+      first_name: requestBody.payer.firstName,
+      last_name: requestBody.payer.lastName,
       identification: {
         type: requestBody.payer.identification.type,
         number: requestBody.payer.identification.number,
@@ -113,3 +112,5 @@ app.post("/pix", (req, res) => {
 app.listen(port, (req, res) => {
     console.log('servidor rodando');
 })
+
+                 module.exports = app;
