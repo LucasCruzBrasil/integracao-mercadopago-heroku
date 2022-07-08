@@ -64,10 +64,10 @@ app.post("/pix", (req, res) => {
   const data = {
     payment_method_id: "pix",
     description: requestBody.description,
-    transaction_amount: Number(requestBody.transactionAmount),
+    transaction_amount: Number(requestBody.transaction_Amount),
     payer: {
       email: requestBody.payer.email,
-      first_name: requestBody.payer.firs_tName,
+      first_name: requestBody.payer.first_Name,
       last_name: requestBody.payer.last_Name,
       identification: {
         type: requestBody.payer.identification.type,
