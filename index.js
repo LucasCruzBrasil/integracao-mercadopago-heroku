@@ -66,7 +66,7 @@ app.post("/pix", (req, res) => {
     description: requestBody.description,
     transaction_amount: Number(requestBody.transaction_Amount),
     payer: {
-      email: requestBody.payer.email,
+      email: "lucas@hotmail.com",
       first_name: requestBody.payer.first_Name,
       last_name: requestBody.payer.last_Name,
       identification: {
