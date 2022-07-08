@@ -1,6 +1,7 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
 const app = express();
+var bodyParser = require('body-parser');
 
 const port = process.env.PORT || 3000
 
