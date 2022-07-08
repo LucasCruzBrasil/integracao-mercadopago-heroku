@@ -4,8 +4,8 @@ const mercadopago = require('mercadopago');
 var bodyParser = require('body-parser'); 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
-//app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json());
+//app.use(bodyParser.json());
 
 
 const port = process.env.PORT || 3000
@@ -67,8 +67,8 @@ app.post("/pix", (req, res) => {
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
       email: requestBody.payer.email,
-      first_name: requestBody.payer.firstName,
-      last_name: requestBody.payer.lastName,
+      first_name: requestBody.payer.firs_tName,
+      last_name: requestBody.payer.last_Name,
       identification: {
         type: requestBody.payer.identification.type,
         number: requestBody.payer.identification.number,
