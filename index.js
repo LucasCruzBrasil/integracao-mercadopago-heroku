@@ -56,22 +56,23 @@ app.post('/not', (req, res) => {
 
 
 app.post("/pix", (req, res) => {
-   
-    const data = {
-      payment_method_id: "pix",
-      description: req.body.description,
-      transaction_amount:Number(req.transactionAmount),
-      payer: {
-        email: req.body.payer.email,
-        first_name: req.body.payer.first_name,
-        last_name: req.body.payer.last_name,
-        identification: {
-          type: req.body.payer.identification.type,
-          number: req.body.identification.number,
-        }
+  const requestBody = req.body;
+
+  const data = {
+    payment_method_id: "pix",
+    description: requestBody.description,
+    transaction_amount: Number(requestBody.transactionAmount),
+    payer: {
+      email: requestBody.payer.email,
+      first_name: requestBody.payer.firstName,
+      last_name: requestBody.payer.lastName,
+      identification: {
+        type: requestBody.payer.identification.type,
+        number: requestBody.payer.identification.number,
       }
-    };
-  
+    }
+  };
+
     mercadopago.payment.create(data)
       .then(function(data) {
           const { response } = data;
