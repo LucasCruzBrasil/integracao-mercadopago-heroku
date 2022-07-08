@@ -3,7 +3,7 @@ const mercadopago = require('mercadopago');
 const app = express();
 app.use(express.json());
 
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser'); 
 
 const port = process.env.PORT || 3000
 
