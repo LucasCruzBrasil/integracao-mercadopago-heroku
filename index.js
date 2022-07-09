@@ -60,6 +60,7 @@ app.post('/not', (req, res) => {
 
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
+  console.log(requestBody);
   const data = {
     payment_method_id: "pix",
     description: requestBody.description,
