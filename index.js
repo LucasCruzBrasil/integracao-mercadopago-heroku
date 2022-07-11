@@ -62,15 +62,15 @@ app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
   console.log(requestBody);
   const data = {
-    transaction_amount:10,
+    transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
    
     
     payer: {
       email: requestBody.payer.email,
-      first_name: requestBody.payer.firstName,
-      last_name:requestBody.payer.lastName,
+      first_name: requestBody.payer.first_name,
+      last_name:requestBody.payer.last_name,
       identification: {
         type:requestBody.payer.identification.type,
         number:requestBody.payer.number
