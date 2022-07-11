@@ -62,7 +62,7 @@ app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
   console.log(requestBody);
   const data = {
-    transaction_amount: Number(requestBody.transactionAmount),
+    transaction_amount:parseFloat(requestBody.transactionAmount),
     description: requestBody.description,
     payment_method_id: "pix",
    
