@@ -11,7 +11,7 @@ app.use(express.json());
 const port = process.env.PORT || 3000
 
 mercadopago.configure({
-  sandbox: true,
+  sandbox: false,
   access_token: process.env.access_token
 })
 
