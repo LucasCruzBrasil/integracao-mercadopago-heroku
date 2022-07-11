@@ -73,7 +73,7 @@ app.post("/process_payment", (req, res) => {
         type:requestBody.payer.identification.type,
         number:requestBody.identification.number,
       }
-    }
+    }//
   };
   console.log(data);
   mercadopago.payment.create(data)
