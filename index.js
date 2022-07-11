@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000
 
 mercadopago.configure({
   sandbox: true,
-  access_token: "TEST-4017170961404208-062211-64e4dc637e50f3e02766bc5104e26d2d-273449421"
+  access_token: process.env.access_token
 })
 
 app.get("/", (req, res) => {
