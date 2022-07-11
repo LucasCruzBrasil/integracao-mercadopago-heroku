@@ -66,16 +66,16 @@ app.post("/process_payment", (req, res) => {
     description: requestBody.description,
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
-      email: this.toString(requestBody.payer.email),
-      first_name: this.toString(requestBody.payer.firstName),
-      last_name:this.toString (requestBody.payer.lastName),
+      email: requestBody.payer.email,
+      first_name: requestBody.payer.firstName,
+      last_name:requestBody.payer.lastName,
       identification: {
-        type:this.toString(requestBody.payer.identification.type),
-        number:number(requestBody.identification.number),
+        type:requestBody.payer.identification.type,
+        number:requestBody.identification.number,
       }
     }
   };
-
+  console.log(data);
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
