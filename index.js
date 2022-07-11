@@ -60,7 +60,7 @@ app.post('/not', (req, res) => {
 
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
-  console.log(requestBody);
+  console.log(requestBody); 
   const data = {
     transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
