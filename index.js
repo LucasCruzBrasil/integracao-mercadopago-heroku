@@ -67,8 +67,8 @@ app.post("/process_payment", (req, res) => {
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
       email: "",
-      first_name: req.body.payer.firstName,
-      last_name: req.body.payer.lastName,
+      first_name:"",
+      last_name: "",
       identification: {
         type: req.body.payer.identification.type,
         number: req.body.payer.identification.number,
