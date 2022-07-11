@@ -62,20 +62,20 @@ app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
   console.log(requestBody);
   const data = {
-    payment_method_id:"pix",
+    payment_method_id: "pix",
     description: requestBody.description,
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
-      email: "",
-      first_name:"",
-      last_name: "",
+      email: String(requestBody.payer.email),
+      first_name: String(requestBody.payer.firstName),
+      last_name: String(requestBody.payer.lastName),
       identification: {
-        type: "",
-        number: "",
+        type:String(requestBody.payer.identification.type),
+        number:Number(requestBody.identification.number),
       }
     }
   };
- 
+
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
