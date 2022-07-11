@@ -73,7 +73,7 @@ app.post("/process_payment", (req, res) => {
       last_name:requestBody.payer.lastName,
       identification: {
         type:requestBody.payer.identification.type,
-        number:56894556,
+        number:requestBody.payer.number
       }
     }//
   };
