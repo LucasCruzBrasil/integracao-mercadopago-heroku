@@ -10,11 +10,13 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000
 
-mercadopago.configure({
+const mercadoPagoAccessToken = process.env.access_token
+mercadopago.configurations.setAccessToken(mercadoPagoAccessToken)
+/* mercadopago.configure({
   sandbox: false,
   access_token: process.env.access_token
 })
-
+ */
 app.get("/", (req, res) => {
   res.send("olá mundo " + Date.now());
 })
