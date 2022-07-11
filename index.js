@@ -70,8 +70,8 @@ app.post("/process_payment", (req, res) => {
       first_name:"",
       last_name: "",
       identification: {
-        type: req.body.payer.identification.type,
-        number: req.body.payer.identification.number,
+        type: "",
+        number: "",
       }
     }
   };
