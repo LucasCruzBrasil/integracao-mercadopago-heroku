@@ -66,7 +66,7 @@ app.post("/process_payment", (req, res) => {
     description: requestBody.description,
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
-      email: req.body.payer.email,
+      email: "",
       first_name: req.body.payer.firstName,
       last_name: req.body.payer.lastName,
       identification: {
@@ -75,7 +75,7 @@ app.post("/process_payment", (req, res) => {
       }
     }
   };
-  console.log(data);
+ 
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
