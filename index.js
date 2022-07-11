@@ -66,12 +66,12 @@ app.post("/process_payment", (req, res) => {
     description: requestBody.description,
     transaction_amount: Number(requestBody.transactionAmount),
     payer: {
-      email: String(requestBody.payer.email),
-      first_name: String(requestBody.payer.firstName),
-      last_name: String(requestBody.payer.lastName),
+      email: requestBody.payer['email'],
+      first_name: requestBody.payer.firstName,
+      last_name: requestBody.payer.lastName,
       identification: {
-        type:String(requestBody.payer.identification.type),
-        number:Number(requestBody.identification.number),
+        type:requestBody.payer.identification.type,
+        number:requestBody.identification.number,
       }
     }
   };
