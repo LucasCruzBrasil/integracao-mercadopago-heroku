@@ -10,7 +10,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000
 
- 
+ //teatando 
   mercadopago.configure({
   sandbox: false,
   access_token: "APP_USR-4017170961404208-062211-9e5c5a7aa6923eb3f8d773e18f31a219-273449421",
