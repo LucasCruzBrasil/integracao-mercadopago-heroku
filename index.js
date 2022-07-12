@@ -86,7 +86,7 @@ app.post("/process_payment", (req, res) => {
 
       res.status(201).json({
         id: response.id,
-        name: response.payer.first_name,
+        name: response.payer,
         amount: response.transaction_amount,
         status: response.status,
         detail: response.status_detail,
