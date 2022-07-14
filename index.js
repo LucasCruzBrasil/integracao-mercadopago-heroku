@@ -11,7 +11,7 @@ app.use(express.json());
 
 
 const port = process.env.PORT || 3000
-
+/* 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
       return res.status(200).send({});
   }
   next();
-}); 
+});  */
 
   mercadopago.configure({
   sandbox: false,
