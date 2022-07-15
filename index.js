@@ -6,7 +6,7 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 //app.use(bodyParser.json());
 
