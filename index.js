@@ -70,9 +70,24 @@ app.get("/pagar", async (req, res) => {
 
 // notificação mercado pago
 app.post('/not', (req, res) => {
-  console.log(req.query);
-  console.log(res.status);
-  res.send('ok');
+  var id = req.query.id;
+
+  setTimeout(() =>{
+      var filtro = {
+        "order.id": id
+      }
+      
+      mercadopago.payment.search({
+        qs: filtro
+      }).then(data => {
+        console.log('ok')
+      }).catch( err => {
+        console.log(err)
+      })
+
+  }, 20000)
+
+
 })
 
 //
