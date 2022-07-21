@@ -80,7 +80,7 @@ app.post('/not', (req, res) => {
       mercadopago.payment.search({
         qs: filtro
       }).then(data => {
-        console.log('ok')
+        console.log('ok pagou')
       }).catch( err => {
         console.log(err)
       })
