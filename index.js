@@ -109,7 +109,7 @@ app.post("/process_payment", (req, res) => {
   var id = "" + Date.now();
 
   const data = {
-    id: id,
+   
     transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
@@ -123,7 +123,7 @@ app.post("/process_payment", (req, res) => {
         type:requestBody.payer.identification.type,
         number:String(requestBody.payer.number)
       }
-    },    
+    }    
      //exeternal_reference: id
 
   };
