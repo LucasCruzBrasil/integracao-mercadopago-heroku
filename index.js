@@ -83,11 +83,15 @@ app.post('/not', (req, res) => {
        var pagamento = data.body.results[0];
       
        if(pagamento != undefined){
-        console.log(pagamento)
+       
+        console.log(pagamento.exeternal_reference);
+        console.log(pagamento.status);
+
+
       } else {
         console.log("pagameto não existe");
       }
-      
+
       }).catch( err => {
         console.log(err)
       })
@@ -102,7 +106,10 @@ app.post('/not', (req, res) => {
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
   console.log(requestBody); 
+  var id = "" + Date.now();
+
   const data = {
+    id: id,
     transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
@@ -116,7 +123,9 @@ app.post("/process_payment", (req, res) => {
         type:requestBody.payer.identification.type,
         number:String(requestBody.payer.number)
       }
-    }//
+    },    
+     exeternal_reference: id
+
   };
   console.log(data);
   mercadopago.payment.create(data)
