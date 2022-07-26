@@ -124,7 +124,7 @@ app.post("/process_payment", (req, res) => {
         number:String(requestBody.payer.number)
       }
     },    
-     exeternal_reference: id
+     exeternal_reference: id;
 
   };
   console.log(data);
