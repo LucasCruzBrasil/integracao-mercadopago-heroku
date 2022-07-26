@@ -77,7 +77,7 @@ app.post('/not', (req, res) => {
         "order.id": id
       }
       
-      Mercadopago.payment.search({
+      mercadopago.payment.search({
         qs: filtro
       }).then(data => {
        var pagamento = data.body.results[0];
