@@ -79,13 +79,12 @@ app.post('/not', (req, res) => {
       
       mercadopago.payment.search({
         qs: filtro
+     
       }).then(data => {
        var pagamento = data.body.results[0];
       
-       if(pagamento != undefined){
-       
-      //  console.log(pagamento.exeternal_reference);
-        console.log(pagamento.status);
+         if(pagamento != undefined){
+       console.log(pagamento.status);
 
 
       } else {
@@ -123,8 +122,8 @@ app.post("/process_payment", (req, res) => {
         type:requestBody.payer.identification.type,
         number:String(requestBody.payer.number)
       }
-    }    
-     //exeternal_reference: id
+    } ,   
+     exeternal_reference: id
 
   };
   console.log(data);
