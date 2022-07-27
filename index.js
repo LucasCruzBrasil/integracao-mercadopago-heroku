@@ -104,7 +104,7 @@ app.post('/not', (req, res) => {
 
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
-  console.log(requestBody); 
+ 
   var id = "" + Date.now();
 
   const data = {
