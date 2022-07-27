@@ -71,7 +71,7 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  var resultado = req.query.status;
+  var resultado = req.query.status[''];
  
   console.log(id);
   console.log(resultado);
