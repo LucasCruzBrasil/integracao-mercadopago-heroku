@@ -71,7 +71,7 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  console.log(id + " aqui se liga ")
+  console.log(id)
   setTimeout(() =>{
       var filtro = {
         "order.id": id
