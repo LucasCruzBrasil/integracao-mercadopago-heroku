@@ -112,7 +112,7 @@ app.post("/process_payment", (req, res) => {
     transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
-    exeternal_reference: id,
+   // exeternal_reference: id,
 
     
     payer: {
