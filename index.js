@@ -71,7 +71,7 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
- 
+
   setTimeout(() => {
     var filtro = {
       "order.id": id
@@ -81,20 +81,15 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data => {
-      const  response  = data.map( res => {
-        resultado : results[0]
-      });
-      console.log(response);
-      
-      /* var pagamento = data.body.results[0];
-      console.log(data)
-        if(pagamento != undefined){
-      console.log(pagamento.status);
+      var pagamento = data.map( res => res.results);
+     console.log(pagamento)
+      if (pagamento != undefined) {
+        console.log(pagamento.status);
 
 
-     } else {
-       console.log("pagameto não existe");
-     } */
+      } else {
+        console.log("pagameto não existe");
+      }
 
     }).catch(err => {
       console.log(err)
