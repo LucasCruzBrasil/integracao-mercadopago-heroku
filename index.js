@@ -126,7 +126,6 @@ app.post("/process_payment", (req, res) => {
     } ,   
 
   };
-  console.log(data);
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
