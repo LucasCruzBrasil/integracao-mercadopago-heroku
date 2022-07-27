@@ -16,23 +16,23 @@ const port = process.env.PORT || 3000
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
-      'Access-Control-Allow-Header',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    'Access-Control-Allow-Header',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
 
   if (req.method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-      return res.status(200).send({});
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).send({});
   }
   next();
 });
 
-  mercadopago.configure({
+mercadopago.configure({
   sandbox: false,
   access_token: "APP_USR-4017170961404208-062211-9e5c5a7aa6923eb3f8d773e18f31a219-273449421",
- 
-}) 
- 
+
+})
+
 app.get("/", (req, res) => {
   res.send("olá mundo " + Date.now());
 })
@@ -71,30 +71,36 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  console.log(id)
-  console.log(req.query)
-  setTimeout(() =>{
-      var filtro = {
-        "order.id": id
-      }
-     
-      mercadopago.payment.search({
-        qs: filtro
-     
-      }).then(data => {
-       var pagamento = data.body.results[0];
-       console.log(data)
-         if(pagamento != undefined){
-       console.log(pagamento.status);
+ 
+  setTimeout(() => {
+    var filtro = {
+      "order.id": id
+    }
 
+    mercadopago.payment.search({
+      qs: filtro
 
-      } else {
-        console.log("pagameto não existe");
-      }
-
-      }).catch( err => {
-        console.log(err)
+    }).then(data => {
+      const { response } = data;
+     let a = res.status(201).json({
+        status: response.status
       })
+
+      console.log(a);
+      
+      /* var pagamento = data.body.results[0];
+      console.log(data)
+        if(pagamento != undefined){
+      console.log(pagamento.status);
+
+
+     } else {
+       console.log("pagameto não existe");
+     } */
+
+    }).catch(err => {
+      console.log(err)
+    })
 
   }, 20000)
 
@@ -105,32 +111,32 @@ app.post('/not', (req, res) => {
 
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
- 
+
   var id = "" + Date.now();
 
   const data = {
-   
-    transaction_amount:Number(requestBody.transaction_amount),
+
+    transaction_amount: Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
-   // exeternal_reference: id,
+    // exeternal_reference: id,
 
-    
+
     payer: {
       email: requestBody.payer.email,
       first_name: requestBody.payer.first_name,
-      last_name:requestBody.payer.last_name,
+      last_name: requestBody.payer.last_name,
       identification: {
-        type:requestBody.payer.identification.type,
-        number:String(requestBody.payer.number)
+        type: requestBody.payer.identification.type,
+        number: String(requestBody.payer.number)
       }
-    } ,   
+    },
 
   };
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
-     
+
       res.status(201).json({
         id: response.id,
         name: response.first_name,
