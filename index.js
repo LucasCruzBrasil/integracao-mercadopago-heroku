@@ -83,7 +83,7 @@ app.post('/not', (req, res) => {
      
       }).then(data => {
        var pagamento = data.body.results[0];
-       console.log(pagamento.status)
+       console.log(data.body.results)
          if(pagamento != undefined){
        console.log(pagamento.status);
 
