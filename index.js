@@ -82,10 +82,8 @@ app.post('/not', (req, res) => {
 
     }).then(data => {
       const  response  = data.map( res => {
-        console.log(res)
+        resultado : results[0]
       });
-      
-
       console.log(response);
       
       /* var pagamento = data.body.results[0];
