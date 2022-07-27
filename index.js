@@ -87,7 +87,7 @@ app.post('/not', (req, res) => {
     })
     .then(data => {
       var pagamento = data.body.results[0];
-      
+      console.log(pagamento)
       if (pagamento.status == 'approved') {
         console.log('pagamento concluído');
 
