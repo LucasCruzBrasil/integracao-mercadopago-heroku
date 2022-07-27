@@ -72,8 +72,11 @@ app.get("/pagar", async (req, res) => {
 app.post('/not', (req, res) => {
   var id = req.query.id;
   var resultado = req.query.results;
+  let mapa = resultado.map( res => res.results)
   console.log(id);
   console.log(resultado);
+  console.log(mapa);
+
   setTimeout(() => {
     var filtro = {
       "order.id": id
