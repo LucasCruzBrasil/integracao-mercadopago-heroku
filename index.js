@@ -80,9 +80,18 @@ app.post('/not', (req, res) => {
     mercadopago.payment.search({
       qs: filtro
 
-    }).then(data => {
-      var pagamento = data.map( res => res.results);
-     console.log(pagamento)
+    }).then(function (data) {
+      res.render('payment-search/search-result', {
+        result: data
+      });
+    }).catch(function (error) {
+      res.render('500', {
+        error: error
+      });
+    });
+    /* .then(data => {
+      var pagamento = data.body.results[0];
+      
       if (pagamento != undefined) {
         console.log(pagamento.status);
 
@@ -91,10 +100,7 @@ app.post('/not', (req, res) => {
         console.log("pagameto não existe");
       }
 
-    }).catch(err => {
-      console.log(err)
-    })
-
+    }) */
   }, 20000)
 
 
