@@ -76,7 +76,7 @@ app.post('/not', (req, res) => {
       var filtro = {
         "order.id": id
       }
-      
+      console.log(filtro + " aqui se liga ")
       mercadopago.payment.search({
         qs: filtro
      
