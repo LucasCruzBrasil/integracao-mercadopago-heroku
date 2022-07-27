@@ -86,7 +86,7 @@ app.post('/not', (req, res) => {
         status: response.status
       })
 
-      console.log(a);
+      console.log(a.status);
       
       /* var pagamento = data.body.results[0];
       console.log(data)
