@@ -129,7 +129,7 @@ app.post("/process_payment", (req, res) => {
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
-      console.log(response);
+     
       res.status(201).json({
         id: response.id,
         name: response.first_name,
