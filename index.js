@@ -81,8 +81,10 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data => {
-      const  response  = data.response;
-     
+      const  response  = data.map( res => {
+        console.log(res)
+      });
+      
 
       console.log(response);
       
