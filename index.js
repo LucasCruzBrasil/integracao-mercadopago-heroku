@@ -71,7 +71,9 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-
+  var resultado = req.query.results;
+  console.log(id);
+  console.log(resultado);
   setTimeout(() => {
     var filtro = {
       "order.id": id
@@ -80,16 +82,8 @@ app.post('/not', (req, res) => {
     mercadopago.payment.search({
       qs: filtro
 
-    }).then(function (data) {
-      res.render('payment-search/search-result', {
-        result: data
-      });
-    }).catch(function (error) {
-      res.render('500', {
-        error: error
-      });
-    });
-    /* .then(data => {
+    })
+    .then(data => {
       var pagamento = data.body.results[0];
       
       if (pagamento != undefined) {
@@ -100,7 +94,11 @@ app.post('/not', (req, res) => {
         console.log("pagameto não existe");
       }
 
-    }) */
+    }).catch(function (error) {
+      res.render('500', {
+        error: error
+      });
+    });
   }, 20000)
 
 
