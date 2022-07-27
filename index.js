@@ -112,7 +112,8 @@ app.post("/process_payment", (req, res) => {
     transaction_amount:Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
-   
+    exeternal_reference: id
+
     
     payer: {
       email: requestBody.payer.email,
@@ -123,7 +124,6 @@ app.post("/process_payment", (req, res) => {
         number:String(requestBody.payer.number)
       }
     } ,   
-     exeternal_reference: id
 
   };
   console.log(data);
