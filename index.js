@@ -87,7 +87,7 @@ app.post('/not', (req, res) => {
     }).then(data => {
       console.log(data)
       var pagamento = data.status.results[0];
-
+      console.log(pagamento)
 
       if (pagamento != undefined) {
         console.log('pagou');
@@ -98,9 +98,7 @@ app.post('/not', (req, res) => {
       }
 
     }).catch(function (error) {
-      res.render('500', {
-        error: error
-      });
+     console.log(error)
     });
   }, 20000)
 
