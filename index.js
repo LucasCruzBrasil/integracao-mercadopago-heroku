@@ -78,6 +78,7 @@ app.post('/not', (req, res) => {
   setTimeout(() => {
     var filtro = {
       "order.id": id,
+      "order.status":resultado
     }
 
     mercadopago.payment.search({
