@@ -84,19 +84,10 @@ app.post('/not', (req, res) => {
     mercadopago.payment.search({
       qs: filtro
 
-    }).then(data => {
-      console.log(data)
-      var pagamento = data.body.results[0];
-
-
-      if (pagamento != undefined) {
-        console.log('pagou');
-
-
-      } else {
-        console.log("não pagou");
-      }
-
+    }).then(function (data) {
+      res.render('payment-search/search-result', {
+        result: data
+      });
     }).catch(function (error) {
       res.render('500', {
         error: error
