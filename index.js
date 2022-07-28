@@ -86,7 +86,7 @@ app.post('/not', (req, res) => {
     })
     .then(data => {
       var pagamento = data.body.results[0];
-      console.log(data.body.status_detail)
+      console.log(pagamento)
 
       if (pagamento == 'pending') {
         console.log('not');
