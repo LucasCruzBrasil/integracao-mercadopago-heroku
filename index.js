@@ -72,7 +72,7 @@ app.get("/pagar", async (req, res) => {
 app.post('/not', (req, res) => {
   var id = req.query.id;
   var resultado = req.query.status;
- 
+
   console.log(id);
 
   setTimeout(() => {
@@ -86,14 +86,14 @@ app.post('/not', (req, res) => {
     }).then(data => {
       console.log(data)
       var pagamento = data.body.results[0];
-      
 
-      if (pagamento == 'pending') {
-        console.log('not');
+
+      if (pagamento != undefined) {
+        console.log('pagou');
 
 
       } else {
-        console.log("yes");
+        console.log("não pagou");
       }
 
     }).catch(function (error) {
@@ -114,7 +114,7 @@ app.post("/process_payment", (req, res) => {
   var id = "" + Date.now();
 
   const data = {
-  
+
 
     transaction_amount: Number(requestBody.transaction_amount),
     description: requestBody.description,
