@@ -89,12 +89,12 @@ app.post('/not', (req, res) => {
       var pagamento = data.body.results[0];
       console.log(data)
 
-      if (pagamento != undefined) {
-        console.log('pagamento concluído');
+      if (pagamento == 'pending') {
+        console.log('not');
 
 
       } else {
-        console.log("pagameto não existe");
+        console.log("yes");
       }
 
     }).catch(function (error) {
