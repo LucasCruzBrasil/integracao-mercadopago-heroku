@@ -83,10 +83,10 @@ app.post('/not', (req, res) => {
     mercadopago.payment.search({
       qs: filtro
 
-    })
-    .then(data => {
+    }).then(data => {
+      console.log(data)
       var pagamento = data.body.results[0];
-      console.log(pagamento)
+      
 
       if (pagamento == 'pending') {
         console.log('not');
