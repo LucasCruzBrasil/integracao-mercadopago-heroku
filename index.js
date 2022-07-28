@@ -74,7 +74,6 @@ app.post('/not', (req, res) => {
   var resultado = req.query.status;
  
   console.log(id);
-  console.log(resultado);
 
   setTimeout(() => {
     var filtro = {
@@ -87,7 +86,7 @@ app.post('/not', (req, res) => {
     })
     .then(data => {
       var pagamento = data.body.results[0];
-      console.log(data)
+      console.log(data.body)
 
       if (pagamento == 'pending') {
         console.log('not');
