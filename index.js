@@ -114,6 +114,14 @@ app.post("/process_payment", (req, res) => {
   var id = "" + Date.now();
 
   const data = {
+    items: [
+      item = {
+        id: id,
+        description: "testes",
+        quantity: 1,
+        currency_id: 'BRL',
+      }
+    ],
 
     transaction_amount: Number(requestBody.transaction_amount),
     description: requestBody.description,
@@ -129,7 +137,9 @@ app.post("/process_payment", (req, res) => {
         type: requestBody.payer.identification.type,
         number: String(requestBody.payer.number)
       }
-    },
+    }, 
+    exeternal_reference: id
+
 
   };
   mercadopago.payment.create(data)
