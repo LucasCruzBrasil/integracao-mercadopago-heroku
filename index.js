@@ -71,13 +71,13 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  var resultado = res.query;
+  var status = req.query.status;
 
   console.log(id);
   console.log(resultado);
   setTimeout(() => {
     var filtro = {
-      "order.id": id,
+      "order.status": status,
      
     }
 
