@@ -85,14 +85,12 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data => {
-      console.log(data)
       var pagamento = data.body.results[0];
      
-      console.log(pagamento)
 
 
       if (pagamento != undefined) {
-        console.log('pagou');
+        console.log(pagamento.status);
 
 
       } else {
