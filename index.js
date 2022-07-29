@@ -97,12 +97,12 @@ app.post('/not', (req, res) => {
         console.log("não pagou");
       }
 
-    }).catch(function (error) {
-     console.log(error)
+    }).catch( err => {
+     console.log(err)
     });
   }, 20000)
 
-
+    res.send('ok');
 })
 
 //
