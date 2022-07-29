@@ -80,7 +80,7 @@ app.post('/not', (req, res) => {
   
       "order.id": id
     }
-
+    console.log(filtro)
     mercadopago.payment.search({
       qs: filtro
 
