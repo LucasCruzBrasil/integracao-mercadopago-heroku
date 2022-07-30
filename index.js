@@ -90,7 +90,6 @@ app.post('/not', (req, res) => {
       console.log(data)
 
       if (l == 200) {
-        console.log(pagamento.status);
         console.log('caiu aqui');
 
 
