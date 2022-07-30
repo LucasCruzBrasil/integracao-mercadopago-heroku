@@ -90,11 +90,11 @@ app.post('/not', (req, res) => {
       console.log(data)
 
       if (l == 200) {
-        console.log('caiu aqui');
+        console.log('ainda não pagou');
 
 
       } else {
-        console.log("não pagou");
+        console.log("Agora pagou !!");
       }
 
     }).catch( err => {
