@@ -72,7 +72,7 @@ app.get("/pagar", async (req, res) => {
 app.post('/not', (req, res) => {
   var id = req.query.id;
   console.log(id);
-  console.log(req.query.Date);
+  console.log(req.query);
 
   setTimeout(() => {
     var filtro = {
@@ -85,7 +85,10 @@ app.post('/not', (req, res) => {
 
     }).then(data => {
       var pagamento = data.body.results[0];
-
+     
+     var x = res.status(201).json({
+        id:pagamento.id
+      })
 
       if (pagamento != undefined) {
         console.log(pagamento.status);
