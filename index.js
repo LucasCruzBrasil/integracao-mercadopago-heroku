@@ -85,11 +85,11 @@ app.post('/not', (req, res) => {
 
     }).then(data => {
       var pagamento = data.body.results[0];
-      
+      var l = data.status
     
       console.log(data)
 
-      if (data['status'] == 200) {
+      if (l == 200) {
         console.log(pagamento.status);
         console.log('caiu aqui');
 
