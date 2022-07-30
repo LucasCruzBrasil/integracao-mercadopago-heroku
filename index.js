@@ -72,6 +72,8 @@ app.get("/pagar", async (req, res) => {
 app.post('/not', (req, res) => {
   var id = req.query.id;
   console.log(id);
+  console.log(res.body);
+
   setTimeout(() => {
     var filtro = {
   
