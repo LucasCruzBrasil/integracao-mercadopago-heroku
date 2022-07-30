@@ -89,6 +89,7 @@ app.post('/not', (req, res) => {
      var x = res.status(201).json({
         id:pagamento.id
       })
+      console.log(x)
 
       if (pagamento != undefined) {
         console.log(pagamento.status);
