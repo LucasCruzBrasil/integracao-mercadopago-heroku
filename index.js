@@ -71,10 +71,7 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  var status = req.query.date_approved;
-
   console.log(id);
-  console.log(status);
   setTimeout(() => {
     var filtro = {
   
@@ -86,7 +83,7 @@ app.post('/not', (req, res) => {
 
     }).then(data => {
       var pagamento = data.body.results[0];
-     
+     console.log(data.body);
 
 
       if (pagamento != undefined) {
