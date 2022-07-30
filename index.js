@@ -89,8 +89,9 @@ app.post('/not', (req, res) => {
     
       console.log(data)
 
-      if (pagamento != undefined) {
+      if (pagamento.status == 200) {
         console.log(pagamento.status);
+        console.log('caiu aqui');
 
 
       } else {
