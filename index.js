@@ -74,21 +74,20 @@ app.post('/not', (req, res) => {
   console.log(id);
   console.log(req.query);
 
+ 
+
   setTimeout(() => {
     var filtro = {
   
       "order.id": id
     }
-    console.log(filtro)
     mercadopago.payment.search({
       qs: filtro
 
     }).then(data => {
       var pagamento = data.body.results[0];
       var l = data.status
-      console.log(pagamento)
 
-      console.log(data)
 
       if (l == 200) {
         console.log('ainda não pagou');
@@ -137,7 +136,7 @@ app.post("/process_payment", (req, res) => {
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
-
+      console.log(response);
       res.status(201).json({
         id: response.id,
         name: response.first_name,
