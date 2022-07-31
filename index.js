@@ -86,7 +86,8 @@ app.post('/not', (req, res) => {
     }).then(data => {
       var pagamento = data.body.results[0];
       var l = data.status
-    
+      console.log(pagamento)
+
       console.log(data)
 
       if (l == 200) {
