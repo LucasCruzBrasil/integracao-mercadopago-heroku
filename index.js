@@ -1,6 +1,6 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
-const mysql = require('../integracao_mercadoPago/mysql').pool;
+const mysql = require('./mysql').pool;
 var bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
