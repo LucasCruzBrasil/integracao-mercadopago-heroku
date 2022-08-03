@@ -1,5 +1,6 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
+const mysql = require('../integracao_mercadoPago/mysql').pool;
 var bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
@@ -75,15 +76,13 @@ app.post('/not', (req, res) => {
  
 
   setTimeout(() => {
-    var filtro = {
-
-      "order.id": id,
-    }
+    
     mercadopago.payment.findById(id).then(data =>  {
      
      var pagamento = data.response.status
      console.log(data.response.description);
-       if (pagamento == "pending") {
+       
+     if (pagamento == "pending") {
         console.log('ainda não pagou');
 
       } else {
