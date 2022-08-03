@@ -84,9 +84,11 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data => {
-      //  var pagamento = data.body.results[0];
+      var pagamento = data.body.results[0];
       var l = data.status
       console.log(l);
+      console.log(pagamento);
+
       if (l == 200) {
         console.log('Pendente');
 
