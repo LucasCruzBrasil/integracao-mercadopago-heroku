@@ -74,38 +74,34 @@ app.post('/not', (req, res) => {
   console.log(id);
   console.log(req.query);
 
- 
+
 
   setTimeout(() => {
     var filtro = {
-  
+
       "order.id": id
     }
     mercadopago.payment.search({
       qs: filtro
 
     }).then(data => {
-      var pagamento = data.body.results[0];
+      //  var pagamento = data.body.results[0];
       var l = data.status
-
-
       if (l == 200) {
-        console.log('ainda não pagou');
-
+        console.log('Pendente');
 
       } else {
-        console.log("Agora pagou !!");
+        console.log("pagamento  !!");
       }
 
-    }).catch( err => {
-     console.log(err)
+    }).catch(err => {
+      console.log(err)
     });
   }, 20000)
 
-    res.send('ok');
+  res.send('ok');
 })
 
-//
 
 app.post("/process_payment", (req, res) => {
   const requestBody = req.body;
@@ -120,7 +116,6 @@ app.post("/process_payment", (req, res) => {
     payment_method_id: "pix",
     // exeternal_reference: id,
 
-
     payer: {
       email: requestBody.payer.email,
       first_name: requestBody.payer.first_name,
@@ -130,9 +125,9 @@ app.post("/process_payment", (req, res) => {
         number: String(requestBody.payer.number)
       }
     }
-
-
   };
+
+
   mercadopago.payment.create(data)
     .then(function (data) {
       const { response } = data;
@@ -152,6 +147,7 @@ app.post("/process_payment", (req, res) => {
       res.status(errorStatus).json({ error_message: errorMessage });
     });
 });
+
 
 function validateError(error) {
   let errorMessage = 'Unknown error cause';
