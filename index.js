@@ -80,7 +80,6 @@ app.post('/not', (req, res) => {
     mercadopago.payment.findById(id).then(data =>  {
      
      var pagamento = data.response.status
-     console.log(data.response);
        
      if (pagamento == "pending") {
         console.log('ainda não pagou');
