@@ -1,6 +1,5 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
-//const mysql = require('mysql').pool
 var bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
@@ -87,6 +86,7 @@ app.post('/not', (req, res) => {
     }).then(data => {
       //  var pagamento = data.body.results[0];
       var l = data.status
+      console.log(l);
       if (l == 200) {
         console.log('Pendente');
 
