@@ -80,16 +80,16 @@ app.post('/not', (req, res) => {
       "order.id": id,
     }
     mercadopago.payment.findById(id).then(data =>  {
-     var pagamento = data.body.results[0];
+     
       console.log(data);
      
-      if (pagamento != undefined) {
+     /*  if (pagamento != undefined) {
         console.log('Pago');
 
       } else {
         console.log("pendente  !!");
       }
-
+ */
     }).catch(err => {
       console.log(err)
     });
