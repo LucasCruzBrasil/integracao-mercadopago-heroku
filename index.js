@@ -83,7 +83,7 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data =>  {
-      var pagamento = data.body;
+      var pagamento = data.body.results[0];
       console.log(data);
      
       if (pagamento != undefined) {
