@@ -70,26 +70,22 @@ app.get("/pagar", async (req, res) => {
 // notificação mercado pago
 app.post('/not', (req, res) => {
   var id = req.query.id;
-  var status = req.query.results[0]
-  console.log(status);
+  
 
-
+ 
 
   setTimeout(() => {
     var filtro = {
 
       "order.id": id,
-      "order.status": status
     }
     mercadopago.payment.search({
       qs: filtro
 
     }).then(data => {
-      var pagamento = data.body.results[0];
-      var l = data.status
-      console.log(l);
+      var pagamento = data.body;
       console.log(pagamento);
-
+     
       if (pagamento == undefined) {
         console.log('Pendente');
 
