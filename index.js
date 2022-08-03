@@ -81,13 +81,13 @@ app.post('/not', (req, res) => {
     }
     mercadopago.payment.findById(id).then(data =>  {
      
-     var pagamento = data.response.status);
+     var pagamento = data.response.status
      
-       if (pagamento == 'pending') {
-        console.log('não pagou');
+       if (pagamento == "pending") {
+        console.log('ainda não pagou');
 
       } else {
-        console.log("pagamento efetuado com sucesso");
+        console.log("pago com sucesso  !!");
       }
  
     }).catch(err => {
