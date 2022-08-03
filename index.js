@@ -84,7 +84,7 @@ app.post('/not', (req, res) => {
       qs: filtro
 
     }).then(data => {
-      var pagamento = data.body.results;
+      var pagamento = data.body;
       var l = data.status
       console.log(l);
       console.log(pagamento);
