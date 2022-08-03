@@ -81,7 +81,7 @@ app.post('/not', (req, res) => {
     }
     mercadopago.payment.findById(id).then(data =>  {
      
-      console.log(data.response);
+      console.log(data.response.status);
      
      /*  if (pagamento != undefined) {
         console.log('Pago');
