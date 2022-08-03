@@ -86,7 +86,7 @@ app.post('/not', (req, res) => {
       var pagamento = data.body;
       console.log(pagamento);
      
-      if (pagamento == undefined) {
+      if (pagamento != undefined) {
         console.log('Pendente');
 
       } else {
