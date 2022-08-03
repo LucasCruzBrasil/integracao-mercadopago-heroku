@@ -87,7 +87,6 @@ app.post('/not', (req, res) => {
       } else {
 
         console.log("pago com sucesso  !!");
-        console.log(data.response)
       }
  
     }).catch(err => {
