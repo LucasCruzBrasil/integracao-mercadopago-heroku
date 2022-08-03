@@ -80,13 +80,13 @@ app.post('/not', (req, res) => {
     var filtro = {
 
       "order.id": id,
-      "order.id": status
+      "order.status": status
     }
     mercadopago.payment.search({
       qs: filtro
 
     }).then(data => {
-      var pagamento = data.body.status[0];
+      var pagamento = data.body.results[0];
       var l = data.status
       console.log(l);
       console.log(pagamento);
