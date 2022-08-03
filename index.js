@@ -87,10 +87,10 @@ app.post('/not', (req, res) => {
       console.log(pagamento);
      
       if (pagamento != undefined) {
-        console.log('Pendente');
+        console.log('Pago');
 
       } else {
-        console.log("pagamento  !!");
+        console.log("pendente  !!");
       }
 
     }).catch(err => {
