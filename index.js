@@ -103,9 +103,9 @@ app.post('/not', (req, res) => {
                   response: null
                 });
               }
-              return res.status(201).send({
+             /*  return res.status(201).send({
                 mensagem: "pago com sucesso!!",
-              })
+              }) */
             })
 
         })
@@ -138,7 +138,7 @@ app.post('/not', (req, res) => {
     });
   }, 20000)
 
-  res.json('ok');
+  res.send('ok');
 })
 
 
