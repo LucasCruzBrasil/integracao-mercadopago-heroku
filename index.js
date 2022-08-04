@@ -78,13 +78,13 @@ app.post('/not', (req, res) => {
   setTimeout(() => {
 
     mercadopago.payment.findById(id).then(data => {
-
+      var id_mercadoPago = data.id
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
       var date_created = data.response.date_created
       var date_approved = data.response.date_approved
-
+      console.log(id_mercadoPago)
       console.log(transaction_amount)
       console.log(description_pagamento)
       console.log(date_created)
@@ -95,7 +95,7 @@ app.post('/not', (req, res) => {
 
       } else {
         console.log('caiu aqui maroto')
-        mysql.getConnection((error, conn) => {
+       /*  mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
             [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
             (error, resultado, field) => {
@@ -105,7 +105,7 @@ app.post('/not', (req, res) => {
               }
               return res.status(201)
             })
-        })
+        }) */
       }
 
 
