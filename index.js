@@ -88,11 +88,17 @@ app.post('/not', (req, res) => {
       if (pagamento == "pending") {
         console.log('ainda não pagou');
 
+      } else {  
+
+        console.log('pagou');
+
+
       }
 
-        mysql.getConnection((error, conn) => {
+       /*  mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
             [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+          
             (error, resultado, field) => {
               conn.release();
               if (error) {
@@ -106,7 +112,7 @@ app.post('/not', (req, res) => {
               })
             })
 
-        })
+        }) */
       
 
     }).catch(err => {
