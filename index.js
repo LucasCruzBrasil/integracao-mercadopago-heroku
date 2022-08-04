@@ -88,34 +88,13 @@ app.post('/not', (req, res) => {
       if (pagamento == "pending") {
         console.log('ainda não pagou');
 
-      } else {  
+      } 
+      if (pagamento == "approved") {
 
         mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
             [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-          
-            (error, resultado, field) => {
-              conn.release();
-              if (error) {
-                return res.status(500).json({
-                  error: error,
-                  response: null
-                });
-              }
-              return res.status(201).json({
-                mensagem:"pago com sucesso!!",
-              })
-            })
 
-        })
-
-
-      }
-
-       /*  mysql.getConnection((error, conn) => {
-          conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-          
             (error, resultado, field) => {
               conn.release();
               if (error) {
@@ -125,12 +104,34 @@ app.post('/not', (req, res) => {
                 });
               }
               return res.status(201).send({
-                mensagem:"pago com sucesso!!",
+                mensagem: "pago com sucesso!!",
               })
             })
 
-        }) */
-      
+        })
+
+
+      }
+
+      /*  mysql.getConnection((error, conn) => {
+         conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+           [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+         
+           (error, resultado, field) => {
+             conn.release();
+             if (error) {
+               return res.status(500).send({
+                 error: error,
+                 response: null
+               });
+             }
+             return res.status(201).send({
+               mensagem:"pago com sucesso!!",
+             })
+           })
+
+       }) */
+
 
     }).catch(err => {
       console.log(err)
