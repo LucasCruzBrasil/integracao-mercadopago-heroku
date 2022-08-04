@@ -137,7 +137,7 @@ app.post('/not', (req, res) => {
     });
   }, 20000)
 
-  res.send('ok');
+  res.json('ok');
 })
 
 
