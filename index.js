@@ -1,7 +1,7 @@
 const express = require('express');
 const mercadopago = require('mercadopago');
 const mysql = require('./mysql').pool
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 app.use(cors());
@@ -73,22 +73,43 @@ app.post('/not', (req, res) => {
   var id = req.query.id;
   console.log(id)
 
- 
+
 
   setTimeout(() => {
-    
-    mercadopago.payment.findById(id).then(data =>  {
-     
-     var pagamento = data.response.status
-       
-     if (pagamento == "pending") {
+
+    mercadopago.payment.findById(id).then(data => {
+
+      var pagamento = data.response.status
+      var transaction_amount = data.response.transaction_amount
+      var description_pagamento = data.response.description_pagamento
+      var date_created = data.response.date_created
+      var date_approved = data.response.date_approved
+
+      if (pagamento == "pending") {
         console.log('ainda não pagou');
 
       } else {
 
-        console.log("pago com sucesso  !!");
+        mysql.getConnection((error, conn) => {
+          conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+            [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+            (error, resultado, field) => {
+              conn.release();
+              if (error) {
+                return res.status(500).send({
+                  error: error,
+                  response: null
+                });
+              }
+              return res.status(201).send({
+                mensagem:"pago com sucesso!!",
+                id: resultado.insertId
+              })
+            })
+
+        })
       }
- 
+
     }).catch(err => {
       console.log(err)
     });
