@@ -81,7 +81,7 @@ app.post('/not', (req, res) => {
 
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
-      var description_pagamento = data.response.description_pagamento
+      var description_pagamento = data.response.description
       var date_created = data.response.date_created
       var date_approved = data.response.date_approved
       console.log(transaction_amount)
