@@ -78,13 +78,13 @@ app.post('/not', (req, res) => {
   setTimeout(() => {
 
     mercadopago.payment.findById(id).then(data => {
-      var id_mercadoPago = data.response.id
+      var id_pagamento = data.response.id
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
       var date_created = data.response.date_created
       var date_approved = data.response.date_approved
-      console.log(id_mercadoPago)
+      console.log(id_pagamento)
       console.log(transaction_amount)
       console.log(description_pagamento)
       console.log(date_created)
@@ -97,7 +97,7 @@ app.post('/not', (req, res) => {
         console.log('Pagou')
          mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id_mercadoPago, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+            [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
             (error, resultado, field) => {
               conn.release();
               if (error) {
