@@ -88,7 +88,7 @@ app.post('/not', (req, res) => {
       if (pagamento == "pending") {
         console.log('ainda não pagou');
 
-      } else {
+      }
 
         mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
@@ -103,12 +103,11 @@ app.post('/not', (req, res) => {
               }
               return res.status(201).send({
                 mensagem:"pago com sucesso!!",
-                id: resultado.insertId
               })
             })
 
         })
-      }
+      
 
     }).catch(err => {
       console.log(err)
