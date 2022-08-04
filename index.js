@@ -84,34 +84,19 @@ app.post('/not', (req, res) => {
       var description_pagamento = data.response.description_pagamento
       var date_created = data.response.date_created
       var date_approved = data.response.date_approved
-
+      console.log(transaction_amount)
+      console.log(description_pagamento)
+      console.log(date_created)
+      console.log(date_approved)
       if (pagamento == "pending") {
         console.log('ainda não pagou');
 
-      } 
-      if (pagamento == "approved") {
-
-        mysql.getConnection((error, conn) => {
-          conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-
-            (error, resultado, field) => {
-              conn.release();
-              if (error) {
-                return res.status(500).send({
-                  error: error,
-                  response: null
-                });
-              }
-             /*  return res.status(201).send({
-                mensagem: "pago com sucesso!!",
-              }) */
-            })
-
-        })
-
-
+      } else {
+        console.log('pago');
       }
+      
+
+      
 
       /*  mysql.getConnection((error, conn) => {
          conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
