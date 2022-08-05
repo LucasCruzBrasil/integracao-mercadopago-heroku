@@ -103,7 +103,7 @@ app.post('/not', (req, res) => {
               if (error) {
                console.log('erro')
               }
-              console.log('salvo com sucesso');
+              console.log(resultado);
             })
  
         }) 
