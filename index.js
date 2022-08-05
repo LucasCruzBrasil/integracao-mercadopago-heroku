@@ -95,45 +95,24 @@ app.post('/not', (req, res) => {
 
       } else {
         console.log('Pagou')
-         mysql.getConnection((error, conn) => {
+        mysql.getConnection((error, conn) => {
           conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+            [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+
             (error, resultado, field) => {
               conn.release();
               if (error) {
-               console.log('erro')
+                return res.status(500).send({
+                  error: error,
+                  response: null
+                });
               }
-            
+              return res.status(201).send({
+                mensagem: "pago com sucesso!!",
+              })
             })
-            return res.status(201).send({
-              mensagem:"pago com sucesso!!",
-            })
-        }) 
+        })
       }
-
-
-
-
-      /*  mysql.getConnection((error, conn) => {
-         conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-           [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-         
-           (error, resultado, field) => {
-             conn.release();
-             if (error) {
-               return res.status(500).send({
-                 error: error,
-                 response: null
-               });
-             }
-             return res.status(201).send({
-               mensagem:"pago com sucesso!!",
-             })
-           })
-
-       }) */
-
-
     }).catch(err => {
       console.log(err)
     });
