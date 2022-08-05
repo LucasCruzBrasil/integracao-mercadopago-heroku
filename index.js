@@ -90,7 +90,7 @@ app.post('/not', (req, res) => {
       console.log(date_created)
       console.log(date_approved)
 
-      if (pagamento == "pending") {
+      if (pagamento == "pending" | pagamento == "cancelled") {
         console.log('ainda não pagou');
 
       } else {
@@ -101,14 +101,9 @@ app.post('/not', (req, res) => {
             (error, resultado, field) => {
               conn.release();
               if (error) {
-                return res.status(500).send({
-                  error: error,
-                  response: null
-                });
+               console.log('erro')
               }
-              return res.status(201).send({
-                mensagem:"pago com sucesso!!",
-              })
+              console.log('salvo com sucesso');
             })
  
         }) 
