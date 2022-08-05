@@ -101,10 +101,16 @@ app.post('/not', (req, res) => {
             (error, resultado, field) => {
               conn.release();
               if (error) {
-                return res.status(500)
+                return res.status(500).send({
+                  error: error,
+                  response: null
+                });
               }
-              return res.status(201)
+              return res.status(201).send({
+                mensagem:"pago com sucesso!!",
+              })
             })
+ 
         }) 
       }
 
