@@ -103,9 +103,11 @@ app.post('/not', (req, res) => {
               if (error) {
                console.log('erro')
               }
-              console.log(resultado);
+            
             })
- 
+            return res.status(201).send({
+              mensagem:"pago com sucesso!!",
+            })
         }) 
       }
 
