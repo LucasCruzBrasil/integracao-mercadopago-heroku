@@ -90,7 +90,7 @@ app.post('/not', (req, res) => {
       console.log(date_created)
       console.log(date_approved)
 
-      if (pagamento == "pending" | pagamento == "cancelled") {
+      if (pagamento == "pending" || pagamento == "cancelled") {
         console.log('ainda não pagou');
 
       } else {
