@@ -95,22 +95,15 @@ app.post('/not', (req, res) => {
 
       } else {
         console.log('Pagou')
+        
         mysql.getConnection((error, conn) => {
-          conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+        var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
             [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-
-            (error, resultado, field) => {
-              conn.release();
-              if (error) {
-                return res.status(500).send({
-                  error: error,
-                  response: null
-                });
-              }
-              return res.status(201).send({
-                mensagem: "pago com sucesso!!",
-              })
+            (sql, function (err, result) {
+              if (err) throw err;
+              console.log("1 record inserted");
             })
+            )
         })
       }
     }).catch(err => {
