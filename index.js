@@ -100,8 +100,9 @@ app.post('/not', (req, res) => {
         var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
             [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
             (sql, function (err, result) {
+              console.log(result)
               if (err) throw err;
-              console.log("1 record inserted");
+              console.log("Salvou no banco !!!");
             })
             )
         })
