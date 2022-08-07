@@ -75,7 +75,7 @@ app.post('/not', (req, res) => {
 
 
 
-  setTimeout(() => {
+ const controladorTempo = setTimeout(() => {
 
     mercadopago.payment.findById(id).then(data => {
       var id_pagamento = data.response.id
@@ -103,6 +103,7 @@ app.post('/not', (req, res) => {
               console.log(result)
               if (err) throw err;
               console.log("Salvou no banco !!!");
+              clearTimeout(controladorTempo);
             })
             )
         })
