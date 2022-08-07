@@ -79,13 +79,13 @@ app.post('/not', (req, res) => {
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
       var date_created = data.response.date_created
-      
-      if (data.res.date_approved != null) {
+      var date_approved = data.response.date_approved
+
+      if (date_approved != null) {
         clearTimeout(controladorTempo);
         console.log('acabou a consulta no banco pois está pago')
 
       }
-      var date_approved = data.response.date_approved
       console.log(id_pagamento)
       console.log(transaction_amount)
       console.log(description_pagamento)
