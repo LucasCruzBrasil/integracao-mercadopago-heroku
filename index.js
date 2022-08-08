@@ -100,7 +100,7 @@ app.post('/not', (req, res) => {
 
         mysql.getConnection((error, conn) => {
           var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+            [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
             (sql, function (err, result) {
               console.log(result)
               if (err) throw err;
