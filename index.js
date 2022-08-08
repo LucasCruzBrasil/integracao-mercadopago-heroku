@@ -92,24 +92,33 @@ app.post('/not', (req, res) => {
         console.log('ainda não pagou');
 
       } else {
+
         console.log('Pagou')
 
         mysql.getConnection((error, conn) => {
+          conn.query(
+            "SELECT * FROM pagamentos WHERE id_pagamento = ?;",
+            (id_pagamento),
+            (error, result, fields) => {
+              if (error) { return res.status(500).send({ error: error }) }
 
-          if (pagamento != 'approved' || pagamento != 'pending' || pagamento != 'cancelled') {
+              if (result == 0) {
+                return res.status(404).send({
+                  mensagem: 'Não fio encotrado nenhum pagamento com esse id'
+                })
+              }
 
-            var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-              [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-              (sql, function (err, result) {
-                console.log(result)
-                if (err) throw err;
-                console.log("Salvou no banco !!!");
-                clearTimeout(controladorTempo);
-              })
-            )
+            }
+          )
 
-          } else { console.log('já esta pago')}
-
+          /* var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+            [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+            (sql, function (err, result) {
+              console.log(result)
+              if (err) throw err;
+              console.log("Salvou no banco !!!");
+            })
+          ) */
         })
       }
     }).catch(err => {
