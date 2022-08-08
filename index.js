@@ -74,7 +74,7 @@ app.post('/not', (req, res) => {
   const controladorTempo = setTimeout(() => {
 
     mercadopago.payment.findById(id).then(data => {
-      var id_pagamento = data.response.id
+      var id_pagamento = data.response.payer.id
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
