@@ -74,7 +74,7 @@ app.post('/not', (req, res) => {
   const controladorTempo = setTimeout(() => {
 
     mercadopago.payment.findById(id).then(data => {
-      var id_pagamento = data.response.payer.id
+      var id_pagamento = data.response.exeternal_reference
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
@@ -114,7 +114,6 @@ app.post('/not', (req, res) => {
       console.log(err)
     });
   }, 20000)
-
   res.send('ok');
 })
 
@@ -126,7 +125,7 @@ app.post("/process_payment", (req, res) => {
 
   const data = {
 
-
+    
     transaction_amount: Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
@@ -140,7 +139,9 @@ app.post("/process_payment", (req, res) => {
         type: requestBody.payer.identification.type,
         number: String(requestBody.payer.number)
       }
-    }
+    },
+    exeternal_reference: id
+
   };
 
 
