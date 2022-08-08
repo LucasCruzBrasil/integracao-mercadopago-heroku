@@ -100,12 +100,10 @@ app.post('/not', (req, res) => {
             "SELECT * FROM pagamentos WHERE id_pagamento = ?;",
             (id_pagamento),
             (error, result, fields) => {
-              if (error) { return res.status(500).send({ error: error }) }
+              if (error) { throw err; }
 
               if (result == 0) {
-                return res.status(404).send({
-                  mensagem: 'Não fio encotrado nenhum pagamento com esse id'
-                })
+               console.log('ainda não consta na base')
               }
 
             }
