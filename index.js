@@ -140,8 +140,7 @@ app.post("/process_payment", (req, res) => {
         number: String(requestBody.payer.number)
       }
     },
-    exeternal_reference: id
-
+    external_reference:id
   };
 
 
