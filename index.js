@@ -81,11 +81,7 @@ app.post('/not', (req, res) => {
       var date_created = data.response.date_created
       var date_approved = data.response.date_approved
 
-      if (date_approved != null) {
-        clearTimeout(controladorTempo);
-        console.log('acabou a consulta no banco pois está pago')
 
-      }
       console.log(id_pagamento)
       console.log(transaction_amount)
       console.log(description_pagamento)
@@ -99,15 +95,21 @@ app.post('/not', (req, res) => {
         console.log('Pagou')
 
         mysql.getConnection((error, conn) => {
-          var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-            [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
-            (sql, function (err, result) {
-              console.log(result)
-              if (err) throw err;
-              console.log("Salvou no banco !!!");
-              clearTimeout(controladorTempo);
-            })
-          )
+
+          if (pagamento != 'approved' || pagamento != 'pending' || pagamento != 'cancelled') {
+
+            var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+              [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+              (sql, function (err, result) {
+                console.log(result)
+                if (err) throw err;
+                console.log("Salvou no banco !!!");
+                clearTimeout(controladorTempo);
+              })
+            )
+
+          } else { console.log('já esta pago')}
+
         })
       }
     }).catch(err => {
@@ -125,7 +127,7 @@ app.post("/process_payment", (req, res) => {
 
   const data = {
 
-    
+
     transaction_amount: Number(requestBody.transaction_amount),
     description: requestBody.description,
     payment_method_id: "pix",
@@ -140,7 +142,7 @@ app.post("/process_payment", (req, res) => {
         number: String(requestBody.payer.number)
       }
     },
-    external_reference:id
+    external_reference: id
   };
 
 
