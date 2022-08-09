@@ -102,16 +102,24 @@ app.post('/not', (req, res) => {
             (error, result, fields) => {
               if (error) { throw err; }
               
-              if (result == 0) {
-                console.log('pagou mais ainda não consta na base')
-
-              } 
-              
               if (result > 0) {
-               console.log(result)
+                console.log('esta pago')
+                console.log(result)
+              
+              } else if (result == 0) {
+                
+                console.log('pagou mais ainda não consta na base')
+                var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+                  [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+                  (sql, function (err, result) {
+                    console.log(result)
+                    if (err) throw err;
+                    console.log("Salvou no banco !!!");
+                  })
+                )
+
               }
 
-              else { console.log('já salvou') }
 
             }
           )
