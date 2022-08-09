@@ -53,7 +53,7 @@ app.get("/pagamentos", (req, res) => {
               
               request: {
                 tipo: 'GET',
-                descricao: '',
+                descricao: 'gorjeta para ' + pag.description_pagamento,
                 url: 'http://localhost:3000/pagamentos/' + pag.id_pagamento
               }
             }
