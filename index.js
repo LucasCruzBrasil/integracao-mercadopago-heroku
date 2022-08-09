@@ -32,7 +32,37 @@ mercadopago.configure({
 })
 
 app.get("/pagamentos", (req, res) => {
-  console.log("olá nodejs");
+  mysql.getConnection((error, conn) => {
+    if (error) { return res.status(500).send({ error: error }) }
+    conn.query(
+      "SELECT * FROM pagamentos",
+      (error, result, fields) => {
+        if (error) { return res.status(500).send({ error: error }) }
+        // formando um objeto mais detalhado
+        const response = {
+          quantidade: result.length,
+          pagamentos: result.map(pag => {
+            return {
+              id_pagamento: pag.id_pagamento,
+              transaction_amount: pag.transaction_amount,
+              status: pag.status,
+              description: pag.description_pagamento,
+              date_created: pag.date_created,
+              date_approved: pag.date_approved,
+
+              
+              request: {
+                tipo: 'GET',
+                descricao: '',
+                url: 'http://localhost:3000/pagamentos/' + pag.id_pagamento
+              }
+            }
+          })
+        }
+        return res.status(200).send(response)
+      }
+    )
+  })
 })
 
 
