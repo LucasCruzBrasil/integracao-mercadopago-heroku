@@ -32,36 +32,8 @@ mercadopago.configure({
 })
 
 //lista por um id especifico 
-app.get("/pagamentos/:id", async (req, res) => {
-  try {
-    const query = "SELECT * FROM pagamentos WHERE id_pagamento = ?;";
-    const result = await mysql.getConnection(query, [req.params.id_pagamento]);
-
-    if (result.length == 0) {
-        return res.status(404).send({
-            message: 'Não foi encontrado pagamento para este ID'
-        })
-    }
-    const response = {
-        valores: {
-            id_pagamento: result[0].id_pagamento,
-            transaction_amount: result[0].transaction_amount,
-            description: result[0].description,
-            date_created: result[0].date_created,
-            data_approved: result[0].data_approved,
-           
-            request: {
-                tipo: 'GET',
-                descricao: 'Retorna um pagamento específico ',
-              
-            }
-
-        }
-    }
-    return res.status(200).send(response);
-} catch (error) {
-    return res.status(500).send({ error: error })
-}
+app.get("/pagamentos/:id", (req, res) => {
+  
 })
 
 
