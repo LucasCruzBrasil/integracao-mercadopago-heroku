@@ -35,7 +35,7 @@ mercadopago.configure({
 app.get("/pagamentos/:id", (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
-    var sql = conn.query("SELECT * FOM pagamentos WHERE  id = ?", [req.params.id_pagamento])
+    var sql = conn.query("SELECT * FOM pagamentos WHERE  id = ?;", [req.params.id_pagamento])
     if (error) { return res.status(500).send({ error: error }) }
 
     if (sql.length == 0) {
@@ -44,8 +44,9 @@ app.get("/pagamentos/:id", (req, res) => {
       })
     }
     const response = {
-      valores: {
-        id_pagamento: sql[0].id_pagamento,
+      
+     /*  valores: {
+         id_pagamento: sql[0].id_pagamento,
         transaction_amount: sql[0].transaction_amount,
         date_created: sql[0].date_created,
         date_approved: sql[0].date_approved,
@@ -53,7 +54,7 @@ app.get("/pagamentos/:id", (req, res) => {
           tipo: 'GET',
           descricao: 'Retorna um pagamento específico ',
         }
-      }
+      } */
     }
     return res.status(200).send(response);
    
