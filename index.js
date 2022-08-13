@@ -37,11 +37,11 @@ app.get("/pagamentos/:id", (req, res) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query('SELECT * FROM pagamentos WHERE id_pagamento = ?',
       [req.params.id_pagamento],
-      (err, rows, fields) => {
+      (err, result, fields) => {
         if (!err){
 
           const response = {
-            pagamentos: rows.map(pag => {
+            pagamentos: result.map(pag => {
               return {
                 id_pagamento: pag.id_pagamento,
                 transaction_amount: pag.transaction_amount,
