@@ -32,31 +32,37 @@ mercadopago.configure({
 })
 
 //lista por um id especifico 
-app.get("/pagamentos/:id", (req, res) => {
-  mysql.getConnection((error, conn) => {
-    if (error) { return res.status(500).send({ error: error }) }
-    conn.query('SELECT * FROM pagamentos WHERE id_pagamento = ?',
-      [req.params.id_pagamento],
-      (err, result, fields) => {
-        if (!err){
+app.get("/pagamentos/:id", async (req, res) => {
+  try {
+    const query = "SELECT * FROM pagamentos WHERE id_pagamento = ?;";
+    const result = await mysql.execute(query, [req.params.id_pagamento]);
 
-          const response = {
-           pagamentos: {
-              id_pagamento: result[0].id_pagamento,
-              transaction_amount: result[0].transaction_amount,
-              status: pag.status,
-              description: result[0].description_pagamento,
-              date_created: result[0].date_created,
-              date_approved:result[0].date_approved,
-           }
-          }
-          return res.status(200).send(response)
-        }
-        
-        else
-          console.log(err)
+    if (result.length == 0) {
+      return res.status(404).send({
+        message: 'Não foi encontrado valor para este ID'
       })
-  })
+    }
+    const response = {
+      valores: {
+        id_pagamento: result[0].id_pagamento,
+        transaction_amount: result[0].transaction_amount,
+        status: result[0].status,
+        description: result[0].description_pagamento,
+        date_created: result[0].date_created,
+        data_valor: result[0].date_approved,
+       
+        request: {
+          tipo: 'GET',
+          descricao: 'Retorna um pagamento específico ',
+          
+        }
+
+      }
+    }
+    return res.status(200).send(response);
+  } catch (error) {
+    return res.status(500).send({ error: error })
+  }
 })
 
 
