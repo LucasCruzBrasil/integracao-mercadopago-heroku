@@ -33,15 +33,17 @@ mercadopago.configure({
 
 //lista por um id especifico 
 app.get("/pagamentos/:id", (req, res) => {
-  mysql.getConnection.query('SELECT * FROM pagamentos WHERE id_pagamento = ?', 
-  [req.params.id_pagamento],
-  (err, rows, fields) => {
-    if(!err)
-    res.send(rows);
-    else 
-    console.log(err)
+  mysql.getConnection((error, conn) => {
+    if (error) { return res.status(500).send({ error: error }) }
+    conn.query('SELECT * FROM pagamentos WHERE id_pagamento = ?',
+      [req.params.id_pagamento],
+      (err, rows, fields) => {
+        if (!err)
+          res.send(rows);
+        else
+          console.log(err)
+      })
   })
-  
 })
 
 
