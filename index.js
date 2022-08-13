@@ -38,8 +38,23 @@ app.get("/pagamentos/:id", (req, res) => {
     conn.query('SELECT * FROM pagamentos WHERE id_pagamento = ?',
       [req.params.id_pagamento],
       (err, rows, fields) => {
-        if (!err)
-          res.send(rows);
+        if (!err){
+
+          const response = {
+            pagamentos: rows.map(pag => {
+              return {
+                id_pagamento: pag.id_pagamento,
+                transaction_amount: pag.transaction_amount,
+                status: pag.status,
+                description: pag.description_pagamento,
+                date_created: pag.date_created,
+                date_approved: pag.date_approved,
+              }
+            })
+          }
+          return res.status(200).send(response)
+        }
+        
         else
           console.log(err)
       })
