@@ -34,8 +34,8 @@ mercadopago.configure({
 //lista por um id especifico 
 app.get("/pagamentos/:id", async (req, res) => {
   try {
-    const query = "SELECT * FROM pagamentos WHERE id_pagamento = ?;";
-    const result = await mysql.execute(query, [req.params.id_pagamento]);
+    const query = "SELECT * FROM pagamentos WHERE description_pagamento = ?;";
+    const result = await mysql.execute(query, [req.params.description_pagamento]);
 
     if (result.length == 0) {
       return res.status(404).send({
@@ -46,7 +46,7 @@ app.get("/pagamentos/:id", async (req, res) => {
       valores: {
         id_pagamento: result[0].id_pagamento,
         transaction_amount: result[0].transaction_amount,
-        status: result[0].status,
+        status: result[0].status_pagamento,
         description: result[0].description_pagamento,
         date_created: result[0].date_created,
         data_valor: result[0].date_approved,
