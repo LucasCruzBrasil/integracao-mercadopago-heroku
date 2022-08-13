@@ -54,7 +54,7 @@ app.get("/pagamentos/:id_pagamento", (req, res, next) => {
 
             id_pagamento: result[0].id_pagamento,
             transaction_amount: result[0].transaction_amount,
-            status: result[0].status_pagemento,
+            //status: result[0].status_pagemento,
             description: result[0].description_pagamento,
             date_created: result[0].date_created,
             date_approved: result[0].date_approved,
