@@ -54,14 +54,14 @@ app.get("/pagamentos/:id_pagamento", (req, res, next) => {
 
             id_pagamento: result[0].id_pagamento,
             transaction_amount: result[0].transaction_amount,
-            status: pag.result[0].status_pagemnto,
+            status: result[0].status_pagemnto,
             description: result[0].description_pagamento,
             date_created: result[0].date_created,
             date_approved: result[0].date_approved,
             request: {
               tipo: 'GET',
-              descricao: 'Retorna um pagamento específico ',
-              url: process.env + 'valores'
+              descricao: 'Retorna um pagamento específico '
+              //url: process.env + 'valores'
             }
           }
 
