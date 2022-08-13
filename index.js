@@ -41,16 +41,14 @@ app.get("/pagamentos/:id", (req, res) => {
         if (!err){
 
           const response = {
-            pagamentos: result.map(pag => {
-              return {
-                id_pagamento: pag.id_pagamento,
-                transaction_amount: pag.transaction_amount,
-                status: pag.status,
-                description: pag.description_pagamento,
-                date_created: pag.date_created,
-                date_approved: pag.date_approved,
-              }
-            })
+           pagamentos: {
+              id_pagamento: result[0].id_pagamento,
+              transaction_amount: result[0].transaction_amount,
+              status: pag.status,
+              description: result[0].description_pagamento,
+              date_created: result[0].date_created,
+              date_approved:result[0].date_approved,
+           }
           }
           return res.status(200).send(response)
         }
