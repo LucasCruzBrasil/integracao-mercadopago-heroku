@@ -32,7 +32,7 @@ mercadopago.configure({
 })
 
 //lista por um id especifico 
-app.get("/pagamentos/:id", (req, res) => {
+app.get("/pagamentos/:id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
@@ -42,7 +42,7 @@ app.get("/pagamentos/:id", (req, res) => {
         if (error) { return res.status(500).send({ error: error }) }
         // formando um objeto mais detalhado
 
-        if (result.length == 0) {
+        /* if (result.length == 0) {
           return res.status(404).send({
             message: 'Não foi encontrado pagamento para este ID'
           })
@@ -65,8 +65,8 @@ app.get("/pagamentos/:id", (req, res) => {
             }
           }
 
-        }
-        return res.status(200).send(response)
+        } */
+        return result.status(200).send(response)
       }
     )
   })
