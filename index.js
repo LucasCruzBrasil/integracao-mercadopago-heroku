@@ -37,6 +37,7 @@ app.get("/pagamentos/:id", (req, res) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
       "SELECT * FROM pagamentos WHERE id_pagamento = ?;",
+      [req.params.id_pagamento],
       (error, result, fields) => {
         if (error) { return res.status(500).send({ error: error }) }
         // formando um objeto mais detalhado
