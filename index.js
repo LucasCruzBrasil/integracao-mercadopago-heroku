@@ -42,11 +42,11 @@ app.get("/pagamentos/:id_pagamento", (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         // formando um objeto mais detalhado
 
-        /* if (result.length == 0) {
+         if (result.length == 0) {
           return res.status(404).send({
             message: 'Não foi encontrado pagamento para este ID'
           })
-        } */
+        } 
 
         const response = {
 
