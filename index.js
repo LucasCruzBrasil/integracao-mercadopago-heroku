@@ -88,7 +88,7 @@ app.get("/pagamentos", (req, res) => {
             return {
               id_pagamento: pag.id_pagamento,
               transaction_amount: pag.transaction_amount,
-              status: pag.status,
+              status: pag.status_pagamento,
               description: pag.description_pagamento,
               date_created: pag.date_created,
               date_approved: pag.date_approved,
