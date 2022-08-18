@@ -32,11 +32,11 @@ mercadopago.configure({
 })
 
 //lista por um id especifico 
-app.get("/pagamentos/:id_pagamento", (req, res, next) => {
+app.get("/pagamentos/:id_Mercado_pago", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
     conn.query(
-      "SELECT * FROM pagamentos WHERE id_pagamento = ?;",
+      "SELECT * FROM pagamentos WHERE id_Mercado_pago = ?;",
       [req.params.id_pagamento],
       (error, result, fields) => {
         if (error) { return res.status(500).send({ error: error }) }
@@ -53,6 +53,7 @@ app.get("/pagamentos/:id_pagamento", (req, res, next) => {
           pagamentos: {
 
             id_pagamento: result[0].id_pagamento,
+            id_Mercado_pago:res[0].id_Mercado_pago,
             transaction_amount: result[0].transaction_amount,
             status: result[0].status_pagemento,
             description: result[0].description_pagamento,
