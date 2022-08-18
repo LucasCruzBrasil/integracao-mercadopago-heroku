@@ -157,6 +157,8 @@ app.post('/not', (req, res) => {
 
 
       console.log(id_pagamento)
+      console.log(id_Mercado_pago)
+
       console.log(transaction_amount)
       console.log(description_pagamento)
       console.log(date_created)
