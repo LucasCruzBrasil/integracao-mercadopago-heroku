@@ -148,6 +148,7 @@ app.post('/not', (req, res) => {
 
     mercadopago.payment.findById(id).then(data => {
       var id_pagamento = data.response.external_reference
+      var id_Mercado_pago = data.response.id
       var pagamento = data.response.status
       var transaction_amount = data.response.transaction_amount
       var description_pagamento = data.response.description
@@ -182,8 +183,8 @@ app.post('/not', (req, res) => {
               } else if (result == 0) {
 
                 console.log('pagou mais ainda não consta na base')
-                var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
-                  [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
+                var sql = conn.query('INSERT INTO pagamentos(id_pagamento, id_Mercado_pago, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
+                  [id_pagamento, id_Mercado_pago, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
                   (sql, function (err, result) {
                     console.log(result)
                     if (err) throw err;
