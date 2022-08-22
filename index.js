@@ -218,21 +218,13 @@ app.post("/process_payment", (req, res) => {
     payment_method_id: "pix",
     // exeternal_reference: id,
 
-    /* payer: {
+    payer: {
       email: requestBody.payer.email,
       first_name: requestBody.payer.first_name,
       last_name: requestBody.payer.last_name,
       identification: {
         type: String(requestBody.payer.identification.type),
         number: String(requestBody.payer.number)
-      }
-    } */ payer: {
-      email: 'testei@gmail.com',
-      first_name: 'Teste',
-      last_name: 'Testei',
-      identification: {
-        type: 'CPF',
-        number: '03820578994'
       }
     } ,
     external_reference: id
