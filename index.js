@@ -223,7 +223,7 @@ app.post("/process_payment", (req, res) => {
       first_name: requestBody.payer.first_name,
       last_name: requestBody.payer.last_name,
       identification: {
-        type: requestBody.payer.identification.type,
+        type: String(requestBody.payer.identification.type),
         number: String(requestBody.payer.number)
       }
     },
