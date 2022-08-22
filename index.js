@@ -238,6 +238,7 @@ app.post("/process_payment", (req, res) => {
       res.status(201).json({
         id: response.id,
         external_reference:response.external_reference,
+        description: response.description,
         name: response.first_name,
         amount: response.transaction_amount,
         status: response.status,
