@@ -219,7 +219,7 @@ app.post("/process_payment", (req, res) => {
     // exeternal_reference: id,
 
     payer: {
-      email: 'pagador@gmail.com',
+      email: requestBody.payer.email,
       first_name: requestBody.payer.first_name,
       last_name: requestBody.payer.last_name,
       identification: {
