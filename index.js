@@ -182,11 +182,13 @@ app.post('/not', (req, res) => {
 
               } else {
 
-                console.log('pagou mais ainda não consta na base')
+                console.log('preparando para salvar')
                 var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
                   [id_pagamento, transaction_amount, pagamento, description_pagamento, date_created, date_approved],
                   (sql, function (err, result) {
                     console.log(result)
+                    conn.release();
+                    console.log('passou do release :)')
                     if (err) throw err;
                     console.log("Salvou no banco !!!");
                   })
