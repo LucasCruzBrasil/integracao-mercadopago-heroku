@@ -42,11 +42,11 @@ app.get("/pagamentos/:id_pagamento", (req, res, next) => {
         if (error) { return res.status(500).send({ error: error }) }
         // formando um objeto mais detalhado
 
-         if (result.length == 0) {
+        if (result.length == 0) {
           return res.status(404).send({
             message: 'Não foi encontrado pagamento para este ID'
           })
-        } 
+        }
 
         const response = {
 
@@ -174,13 +174,13 @@ app.post('/not', (req, res) => {
             "SELECT * FROM pagamentos WHERE id_pagamento = ?;",
             (id_pagamento),
             (error, result, fields) => {
-              if (error) { throw err; }
 
-              if (result > 0) {
-                console.log('esta pago')
-                console.log(result)
+              if (result.length > 0) {
+                res.status(409).send(
+                  { mensagem: 'já está salvo' }
+                )
 
-              } else if (result == 0) {
+              } else {
 
                 console.log('pagou mais ainda não consta na base')
                 var sql = conn.query('INSERT INTO pagamentos(id_pagamento, transaction_amount, status_pagamento, description_pagamento, date_created, date_approved)VALUES(?,?,?,?,?,?)',
@@ -226,7 +226,7 @@ app.post("/process_payment", (req, res) => {
         type: String(requestBody.payer.identification.type),
         number: String(requestBody.payer.number)
       }
-    } ,
+    },
     external_reference: id
   };
 
@@ -237,7 +237,7 @@ app.post("/process_payment", (req, res) => {
       console.log(response);
       res.status(201).json({
         id: response.id,
-        external_reference:response.external_reference,
+        external_reference: response.external_reference,
         description: response.description,
         name: response.first_name,
         amount: response.transaction_amount,
